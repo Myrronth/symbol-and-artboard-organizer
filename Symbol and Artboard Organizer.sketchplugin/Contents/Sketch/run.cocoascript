@@ -1,0 +1,152 @@
+// jshint ignore: start
+
+var onRun = function(context) {
+
+    var doc = context.document;
+    var page = context.document.currentPage();
+    var artboards = page.artboards();
+    var artboardProxies = [];
+    var symbolProxies = [];
+    var horizontalGap = 50;
+    var verticalGap = 100;
+    var symbolArtboardGap = 500;
+
+    var x, y, lastArtboardProxy, lastSymbolProxy;
+
+    artboards.forEach(function(artboard) {
+        if(artboard.class() == 'MSArtboardGroup') {
+            var identifier = "";
+            var scopesAndName = artboard.name().split('/');
+            var scopes = scopesAndName.slice(0, scopesAndName.length - 1);
+            var depth = scopes.length;
+
+            scopesAndName.forEach(function(scope) {
+                scope = scope.trim();
+                var match = scope.match(/([0-9]{2}).*/);
+                identifier += match ? match[1] : scope;
+            });
+
+            identifier += "00".repeat(Math.max(0, 2 - depth));
+            identifier = parseInt(identifier, 10);
+
+            artboardProxies.push({
+                identifier: identifier,
+                scope: scopes.join('/').trim(),
+                artboard: artboard
+            });
+        } else if(artboard.class() == 'MSSymbolMaster') {
+            var scopesAndName = artboard.name().split('/');
+            var scopes = scopesAndName.slice(0, scopesAndName.length - 1);
+
+            symbolProxies.push({
+                identifier: artboard.name(),
+                scope: scopes.join('/').trim(),
+                symbol: artboard
+            });
+        }
+    });
+
+    // Symbols
+
+    symbolProxies = symbolProxies.sort(function(symbolProxy1, symbolProxy2) {
+        return symbolProxy1.symbol.name().localeCompare(symbolProxy2.symbol.name());
+    });
+
+    x = 0;
+    y = 0;
+    lastSymbolProxy = null;
+
+    var maxWidth = 0;
+    var maxHeight = 0;
+
+    symbolProxies.forEach(function(symbolProxy) {
+        var symbol = symbolProxy.symbol;
+        var scope = symbolProxy.scope;
+
+        if(lastSymbolProxy) {
+            if(lastSymbolProxy.scope != scope && lastSymbolProxy.symbol.name() != scope) {
+                x = symbolProxy.x = x + maxWidth + verticalGap;
+                y = symbolProxy.y = 0;
+                maxWidth = 0;
+            } else {
+                x = symbolProxy.x = lastSymbolProxy.x;
+                y = symbolProxy.y = y + lastSymbolProxy.symbol.frame().height() + horizontalGap;
+            }
+        } else {
+            x = symbolProxy.x = 0;
+            y = symbolProxy.y = 0;
+        }
+
+        lastSymbolProxy = symbolProxy;
+        maxWidth = Math.max(maxWidth, symbol.frame().width());
+
+        if(artboardProxies.length > 0) {
+            maxHeight = Math.max(maxHeight, y + symbol.frame().height());
+        } else {
+            symbol.frame().setOrigin({x, y});
+        }
+    });
+
+    if(artboardProxies.length > 0) {
+        symbolProxies.forEach(function(symbolProxy) {
+            var symbol = symbolProxy.symbol;
+            var x = symbolProxy.x;
+            var y = symbolProxy.y - maxHeight - symbolArtboardGap;
+
+            symbol.frame().setOrigin({x, y});
+        });
+    }
+
+    symbolProxies.reverse().forEach(function(symbolProxy) {
+        var symbol = symbolProxy.symbol;
+
+        symbol.moveToLayer_beforeLayer(page, null);
+        symbol.select_byExpandingSelection(false, true);
+    });
+
+    // Artboards
+
+    artboardProxies = artboardProxies.sort(function(artboardProxy1, artboardProxy2) {
+        if(artboardProxy1.identifier < artboardProxy2.identifier) {
+            return -1;
+        } else if(artboardProxy1.identifier > artboardProxy2.identifier) {
+            return 1;
+        } else {
+            return artboardProxy1.artboard.name().localeCompare(artboardProxy2.artboard.name());
+        }
+    });
+
+    x = 0;
+    y = 0;
+    lastArtboardProxy = null;
+
+    artboardProxies.forEach(function(artboardProxy) {
+        var artboard = artboardProxy.artboard;
+        var scope = artboardProxy.scope;
+
+        if(lastArtboardProxy) {
+            if(lastArtboardProxy.scope != scope && lastArtboardProxy.artboard.name() != scope) {
+                x = 0;
+                y += lastArtboardProxy.artboard.frame().height() + verticalGap;
+            } else {
+                x += lastArtboardProxy.artboard.frame().width() + horizontalGap;
+                y = lastArtboardProxy.artboard.frame().y();
+            }
+        } else {
+            x = 0;
+            y = 0;
+        }
+
+        artboard.frame().setOrigin({x, y});
+
+        lastArtboardProxy = artboardProxy;
+    });
+
+    artboardProxies.reverse().forEach(function(artboardProxy) {
+        var artboard = artboardProxy.artboard;
+
+        artboard.moveToLayer_beforeLayer(page, null);
+        artboard.select_byExpandingSelection(false, true);
+    });
+
+};

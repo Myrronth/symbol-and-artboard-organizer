@@ -14,7 +14,18 @@
             </ul>
           ]]>
         </description>
-        <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/master.zip" sparkle:version="1.0" />
+        <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/1.0.zip" sparkle:version="1.0" />
+      </item>
+      <item>
+        <title>Version 1.0.1</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Added sketch runner support</li>
+            </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/1.0.1.zip" sparkle:version="1.0.1" />
       </item>
   </channel>
 </rss>

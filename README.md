@@ -3,7 +3,7 @@
 Rearranges symbols and artboards on a selected page.
 
 <a href="http://bit.ly/SketchRunnerWebsite">
-  <img src="http://bit.ly/RunnerBadgeBlue">
+  <img src="http://bit.ly/RunnerBadgeWhite">
 </a>
 
 ## What is does

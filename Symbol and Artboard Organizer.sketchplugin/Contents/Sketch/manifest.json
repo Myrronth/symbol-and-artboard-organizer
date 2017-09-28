@@ -11,11 +11,13 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Run Symbol and Artboard Organizer",
+      "name": "Symbol and Artboard Organizer",
       "identifier": "symbol-and-artboard-organizer-run",
       "shortcut": "cmd option ctrl o",
       "script": "run.cocoascript",
-      "handler": "onRun"
+      "handler": "onRun",
+      "description" : "Organize your symbols and artboards.",
+      "icon" : "icons/organize.png",
     }
   ],
   "menu": {

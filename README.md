@@ -2,6 +2,10 @@
 
 Rearranges symbols and artboards on a selected page.
 
+<a href="http://bit.ly/SketchRunnerWebsite">
+  <img src="http://bit.ly/RunnerBadgeBlue">
+</a>
+
 ## What is does
 
 - Sorts symbols and artboards in the layer list to be grouped together and reorders them by name or identifier (ascending)

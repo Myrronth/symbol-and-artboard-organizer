@@ -1,4 +1,4 @@
-# symbol-and-artboard-organizer
+# Symbol and Artboard Organizer
 
 Rearranges symbols and artboards on a selected page.
 
@@ -6,7 +6,7 @@ Rearranges symbols and artboards on a selected page.
   <img height="32px" src="http://bit.ly/RunnerBadgeBlue">
 </a>
 
-## What is does
+## What it does
 
 - Sorts symbols and artboards in the layer list to be grouped together and reorders them by name or identifier (ascending)
 - Rearranges symbols in a column-based layout, grouped together by name
@@ -38,4 +38,4 @@ If your artboard names (or each segment seperated by a slash) start with a two-f
 ![Organized page with symbols and artboards](assets/screenshots/symbols-and-artboards.png?raw=true)
 
 ## Install with Sketch Runner
-With Sketch Runner, just go to the `install` command and search for `[plugin name]`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).
+With Sketch Runner, just go to the `install` command and search for `Symbol and Artboard Organizer`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).

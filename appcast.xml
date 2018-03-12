@@ -27,5 +27,16 @@
         </description>
         <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/1.0.1.zip" sparkle:version="1.0.1" />
       </item>
+      <item>
+        <title>Version 1.0.2</title>
+        <description>
+          <![CDATA[
+            <ul>
+              <li>Fixed a bug which calculated the row height based on the last item instead of the tallest</li>
+            </ul>
+          ]]>
+        </description>
+        <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/1.0.2.zip" sparkle:version="1.0.2" />
+      </item>
   </channel>
 </rss>

@@ -11,7 +11,7 @@ var onRun = function(context) {
     var verticalGap = 100;
     var symbolArtboardGap = 500;
 
-    var x, y, lastArtboardProxy, lastSymbolProxy;
+    var x, y, maxHeight, lastArtboardProxy, lastSymbolProxy;
 
     artboards.forEach(function(artboard) {
         if(artboard.class() == 'MSArtboardGroup') {
@@ -54,10 +54,10 @@ var onRun = function(context) {
 
     x = 0;
     y = 0;
+    maxHeight = 0;
     lastSymbolProxy = null;
 
     var maxWidth = 0;
-    var maxHeight = 0;
 
     symbolProxies.forEach(function(symbolProxy) {
         var symbol = symbolProxy.symbol;
@@ -118,6 +118,7 @@ var onRun = function(context) {
 
     x = 0;
     y = 0;
+    maxHeight = 0;
     lastArtboardProxy = null;
 
     artboardProxies.forEach(function(artboardProxy) {
@@ -127,7 +128,9 @@ var onRun = function(context) {
         if(lastArtboardProxy) {
             if(lastArtboardProxy.scope != scope && lastArtboardProxy.artboard.name() != scope) {
                 x = 0;
-                y += lastArtboardProxy.artboard.frame().height() + verticalGap;
+                y += maxHeight + verticalGap;
+
+                maxHeight = 0;
             } else {
                 x += lastArtboardProxy.artboard.frame().width() + horizontalGap;
                 y = lastArtboardProxy.artboard.frame().y();
@@ -139,6 +142,7 @@ var onRun = function(context) {
 
         artboard.frame().setOrigin({x, y});
 
+        maxHeight = Math.max(maxHeight, artboardProxy.artboard.frame().height());
         lastArtboardProxy = artboardProxy;
     });
 

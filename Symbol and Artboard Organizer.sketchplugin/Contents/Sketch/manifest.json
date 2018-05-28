@@ -17,7 +17,7 @@
       "script": "run.cocoascript",
       "handler": "onRun",
       "description" : "Organize your symbols and artboards.",
-      "icon" : "icons/organize.png",
+      "icon" : "icons/organize.png"
     }
   ],
   "menu": {

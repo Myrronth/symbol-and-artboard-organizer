@@ -48,6 +48,17 @@
             ]]>
           </description>
           <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/1.0.3.zip" sparkle:version="1.0.3" />
-        </item>
+      </item>
+      <item>
+          <title>Version 1.0.4</title>
+          <description>
+            <![CDATA[
+              <ul>
+                <li>Fixed a bug with sorting artboards when identifiers have different length</li>
+              </ul>
+            ]]>
+          </description>
+          <enclosure url="https://github.com/Myrronth/symbol-and-artboard-organizer/archive/1.0.4.zip" sparkle:version="1.0.4" />
+      </item>
   </channel>
 </rss>

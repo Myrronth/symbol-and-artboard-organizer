@@ -27,7 +27,6 @@ var onRun = function(context) {
             });
 
             identifier += "00".repeat(Math.max(0, 2 - depth));
-            identifier = parseInt(identifier, 10);
 
             artboardProxies.push({
                 identifier: identifier,
@@ -107,20 +106,9 @@ var onRun = function(context) {
     // Artboards
 
     artboardProxies = artboardProxies.sort(function(artboardProxy1, artboardProxy2) {
-        var identifier1 = artboardProxy1.identifier
-        var identifier2 = artboardProxy2.identifier
-        var identifier1Length = identifier1.toString().length
-        var identifier2Length = identifier2.toString().length
-
-        if(identifier1Length < identifier2Length) {
-          identifier1 *= 10**(identifier2Length-identifier1Length)
-        } else if(identifier1Length > identifier2Length) {
-          identifier2 *= 10**(identifier1Length-identifier2Length)
-        }
-
-        if(identifier1 < identifier2) {
+        if(artboardProxy1.identifier < artboardProxy2.identifier) {
             return -1;
-        } else if(identifier1 > identifier2) {
+        } else if(artboardProxy1.identifier > artboardProxy2.identifier) {
             return 1;
         } else {
             return artboardProxy1.artboard.name().localeCompare(artboardProxy2.artboard.name());

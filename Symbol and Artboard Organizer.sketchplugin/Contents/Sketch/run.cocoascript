@@ -107,9 +107,20 @@ var onRun = function(context) {
     // Artboards
 
     artboardProxies = artboardProxies.sort(function(artboardProxy1, artboardProxy2) {
-        if(artboardProxy1.identifier < artboardProxy2.identifier) {
+        var identifier1 = artboardProxy1.identifier
+        var identifier2 = artboardProxy2.identifier
+        var identifier1Length = identifier1.toString().length
+        var identifier2Length = identifier2.toString().length
+
+        if(identifier1Length < identifier2Length) {
+          identifier1 *= 10**(identifier2Length-identifier1Length)
+        } else if(identifier1Length > identifier2Length) {
+          identifier2 *= 10**(identifier1Length-identifier2Length)
+        }
+
+        if(identifier1 < identifier2) {
             return -1;
-        } else if(artboardProxy1.identifier > artboardProxy2.identifier) {
+        } else if(identifier1 > identifier2) {
             return 1;
         } else {
             return artboardProxy1.artboard.name().localeCompare(artboardProxy2.artboard.name());

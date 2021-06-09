@@ -29,13 +29,13 @@ If your artboard names (or each segment seperated by a slash) start with a two-f
 
 ## Screenshots
 ### Organize a page containing only symbols
-![Organized symbols page](assets/screenshots/symbols.png?raw=true)
+![Organized symbols page](screenshots/symbols.png?raw=true)
 
 ### Organize a page containing only artboards
-![Organized artboard page](assets/screenshots/artboards.png?raw=true)
+![Organized artboard page](screenshots/artboards.png?raw=true)
 
 ### Organize a page containing both symbols and artboards
-![Organized page with symbols and artboards](assets/screenshots/symbols-and-artboards.png?raw=true)
+![Organized page with symbols and artboards](screenshots/symbols-and-artboards.png?raw=true)
 
 ## Install with Sketch Runner
 With Sketch Runner, just go to the `install` command and search for `Symbol and Artboard Organizer`. Runner allows you to manage plugins and do much more to speed up your workflow in Sketch. [Download Runner here](http://www.sketchrunner.com).

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sketch-hq/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "name": "Symbol and Artboard Organizer",
+  "description": "Plugin to organize artboards and symbols",
+  "author": "Tobias Kreß",
+  "email": "kress@pixelflut.net",
+  "homepage": "https://github.com/Myrronth/symbol-and-artboard-organizer",
+  "identifier": "net.pixelflut.sketch.symbol-and-artboard-organizer",
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "Symbol and Artboard Organizer",
+      "identifier": "symbol-and-artboard-organizer.run",
+      "shortcut": "cmd option ctrl o",
+      "script": "./run.js"
+    }
+  ],
+  "menu": {
+    "title": "Symbol and Artboard Organizer",
+    "items": [
+      "symbol-and-artboard-organizer.run"
+    ],
+    "isRoot": true
+  }
+}
